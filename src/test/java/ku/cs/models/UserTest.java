@@ -8,6 +8,12 @@ import static org.junit.jupiter.api.Assertions.*;
 class UserTest {
 
     @Test
+    void testIsUsername() {
+        User user = new User("user01", "plain-p@ssw0rd");
+        assertTrue(user.isUsername("user01"));
+    }
+
+    @Test
     @DisplayName("Password should not store in plain text")
     public void testPasswordIsNotStoreInPlainText() {
         User user = new User("user01", "plain-p@ssw0rd");
@@ -23,4 +29,12 @@ class UserTest {
         boolean actual = user.validatePassword("plain-p@ssw0rd");
         assertTrue(actual);
     }
+
+    @Test
+    void testSetPassword() {
+        User user = new User("user01", "123");
+        user.setPassword("1234");
+        assertTrue(user.validatePassword("1234"));
+    }
+
 }
